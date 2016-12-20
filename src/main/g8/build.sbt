@@ -1,7 +1,7 @@
 // copy all jars from Scalatron's distribution (bin directory) into lib/
 
 lazy val botDirectory = settingKey[File]("bot-directory")
-lazy val play = taskKey[Unit]("play")
+lazy val play = taskKey[Int]("play")
 
 lazy val root = (project in file(".")).settings(
   inThisBuild(Seq(

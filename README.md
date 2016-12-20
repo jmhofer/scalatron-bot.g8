@@ -1,4 +1,4 @@
-A [Giter8][g8] template for [Scalatron] Bots.
+A [Giter8][g8] template for [Scalatron] Bots. [![Build Status](https://travis-ci.org/jmhofer/scalatron-bot.g8.svg?branch=master)](https://travis-ci.org/jmhofer/scalatron-bot.g8)
 
 Prerequisites
 -------------
@@ -8,7 +8,7 @@ Prerequisites
 Usage
 -----
 
-- initialize via `sbt new jmhofer/scalatron-bot.g8`
+- initialize via `sbt new jmhofer/scalatron-bot.g8` (this only works for sbt >= 0.13.13, otherwise please see the [Giter8][g8] docs)
 - put the JARs from the Scalatron distribution (bin directory) into a directory called `lib`
 - create a directory for your bots (defaults to `bots`), and maybe copy some other bots into there
 - go into the `sbt` console
