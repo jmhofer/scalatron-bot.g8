@@ -13,7 +13,8 @@ Usage
   set `scalatronDirectory` to the path to your Scalatron distribution
 - go into the `sbt` console
 - test your bot using [Specs2] and `test`
-- package your bot using `package`
+- assemble your bot using `assembly` - you will find it ready for upload 
+  in the `target` directory, named `ScalatronBot.jar`
 - run your bot using `play` (you don't need to explicitly test or package it for this)
 
 Template license

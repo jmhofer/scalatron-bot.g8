@@ -14,12 +14,15 @@ lazy val root = (project in file(".")).settings(
   scalatronDirectory := file("$scalatronDirectory$"),
   javaOptions += "-Xmx1g",
 
+  target in assembly := target.value,
+  assemblyJarName in assembly := "ScalatronBot.jar",
+  assemblyOption in assembly := (assemblyOption in assembly).value copy (includeScala = false),
+
   play := {
     val scalatron = scalatronDirectory.value
-    val botJar = (Keys.`package` in Compile).value
 
     IO delete (scalatron / "bots" / name.value)
-    IO copyFile (botJar, scalatron / "bots" / name.value / "ScalatronBot.jar")
+    IO copyFile (assembly.value, scalatron / "bots" / name.value / "ScalatronBot.jar")
 
     Fork.java.fork(
       config = ForkOptions(
