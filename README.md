@@ -3,17 +3,18 @@ A [Giter8][g8] template for [Scalatron] Bots. [![Build Status](https://travis-ci
 Prerequisites
 -------------
 
-- have a current version [sbt] installed (>= 0.13.13 recommended)
+- have a current version of [sbt] installed (>= 0.13.13 recommended)
+- have [Scalatron] installed (use `sbt dist` to create a distribution)
 
 Usage
 -----
 
-- initialize via `sbt new jmhofer/scalatron-bot.g8` (this only works for sbt >= 0.13.13, otherwise please see the [Giter8][g8] docs)
-- put the JARs from the Scalatron distribution (bin directory) into a directory called `lib`
-- create a directory for your bots (defaults to `bots`), and maybe copy some other bots into there
+- initialize via `sbt new jmhofer/scalatron-bot.g8` (this only works for sbt >= 0.13.13, otherwise please see the [Giter8][g8] docs) - 
+  set `scalatronDirectory` to the path to your Scalatron distribution
 - go into the `sbt` console
 - test your bot using [Specs2] and `test`
-- run your bot using `play`
+- package your bot using `package`
+- run your bot using `play` (you don't need to explicitly test or package it for this)
 
 Template license
 ----------------

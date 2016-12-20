@@ -1,7 +1,5 @@
-// copy all jars from Scalatron's distribution (bin directory) into lib/
-
-lazy val botDirectory = settingKey[File]("bot-directory")
-lazy val play = taskKey[Int]("play")
+lazy val scalatronDirectory = settingKey[File]("Base directory of your Scalatron installation.")
+lazy val play = taskKey[Unit]("Installs your bot and starts Scalatron.")
 
 lazy val root = (project in file(".")).settings(
   inThisBuild(Seq(
@@ -13,22 +11,22 @@ lazy val root = (project in file(".")).settings(
 
   name := "$name;format="normalize"$",
 
-  botDirectory := file("bots"),
+  scalatronDirectory := file("$scalatronDirectory$"),
   javaOptions += "-Xmx1g",
 
   play := {
-    val bots = botDirectory.value
-    val ucp = (unmanagedClasspath in Compile).value
+    val scalatron = scalatronDirectory.value
     val botJar = (Keys.`package` in Compile).value
 
-    IO createDirectory (bots / name.value)
-    IO copyFile (botJar, bots / name.value / "ScalatronBot.jar")
+    IO delete (scalatron / "bots" / name.value)
+    IO copyFile (botJar, scalatron / "bots" / name.value / "ScalatronBot.jar")
 
-    Fork.java(
+    Fork.java.fork(
       config = ForkOptions(
-        runJVMOptions = javaOptions.value ++ Seq("-cp", (ucp.files :+ botJar).absString)
+        runJVMOptions = javaOptions.value,
+        workingDirectory = Some(scalatron / "bin")
       ),
-      arguments = Seq("scalatron.main.Main", "-plugins", bots.absolutePath)
+      arguments = Seq("-jar", "Scalatron.jar", "-browser", "no")
     )
   }
 )
